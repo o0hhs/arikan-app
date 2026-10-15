@@ -5,6 +5,8 @@ import android.os.Parcelable
 import com.github.kr328.clash.core.util.Parcelizer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import java.io.File
 
 /**
  * What the VK TURN clients of the active profile are doing — the core's answer to
@@ -75,18 +77,17 @@ class TurnStatus : Parcelable {
 
         var since: Long = 0
 
+        /** Whether a line of the shared log came from this node's client. */
+        fun owns(line: String): Boolean {
+            if (streamBase <= 0) return false
+
+            val stream = streamTag(line) ?: return false
+
+            return stream >= streamBase && stream < streamBase + streamsMax.coerceAtLeast(1)
+        }
+
         /** The lines of [TurnStatus.log] that belong to this node. */
-        fun logLines(status: TurnStatus): List<String> {
-            if (streamBase <= 0) return emptyList()
-
-            return status.log.filter { line -> line.belongsTo(streamBase, streamsMax) }
-        }
-
-        private fun String.belongsTo(base: Int, count: Int): Boolean {
-            val stream = streamTag(this) ?: return false
-
-            return stream >= base && stream < base + count.coerceAtLeast(1)
-        }
+        fun logLines(status: TurnStatus): List<String> = status.log.filter { owns(it) }
 
         private fun streamTag(line: String): Int? {
             val start = line.indexOf("[STREAM ")
@@ -119,7 +120,30 @@ class TurnStatus : Parcelable {
         return 0
     }
 
+    /** The lines of [log] no node claims — the core's own notes about the clients. */
+    fun coreLines(): List<String> = log.filter { line -> nodes.none { it.owns(line) } }
+
     companion object CREATOR : Parcelable.Creator<TurnStatus> {
+        /** The file the core keeps this document in, next to the profile. */
+        const val FILE_NAME = "turn-status.json"
+
+        /** The clients' log, next to the profile: appended while the tunnel runs. */
+        const val LOG_FILE_NAME = "turn.log"
+
+        private val json = Json { ignoreUnknownKeys = true }
+
+        /**
+         * Read the status the core wrote for a profile, or null when there is none — a profile
+         * whose subscription carries no WL entries never grows one, and a stopped tunnel leaves
+         * the last one behind for as long as the profile is loaded.
+         */
+        fun readFrom(profileDir: File): TurnStatus? {
+            val file = File(profileDir, FILE_NAME)
+            if (!file.isFile) return null
+
+            return runCatching { json.decodeFromString(serializer(), file.readText()) }.getOrNull()
+        }
+
         override fun createFromParcel(parcel: Parcel): TurnStatus {
             return Parcelizer.decodeFromParcel(serializer(), parcel)
         }

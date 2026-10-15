@@ -1,6 +1,10 @@
 3th-party software licenses
 
  * Clash
+ * vk-turn-proxy (https://github.com/cacggghp/vk-turn-proxy), embedded as a library from our
+   fork https://github.com/o0hhs/vk-turn-proxy, tag v1.8.3-arikan.1 (branch arikan-library;
+   the changes it carries are listed in its EMBEDDING.md). It is what the app runs to serve a
+   panel's WL entries; see core/src/main/golang/native/turn and docs/turn.md.
 ==========================================================================
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007

@@ -18,6 +18,7 @@ class SettingsDesign(context: Context) : Design<SettingsDesign.Request>(context)
         StartDnsHosts,
         StartTunnels,
         StartOverride,
+        StartTurn,
     }
 
     private val binding = DesignSettingsBinding

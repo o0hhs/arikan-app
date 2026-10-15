@@ -294,7 +294,9 @@ afterEvaluate {
     }
 }
 
-val abis = listOf("arm64-v8a" to "Arm64V8a", "armeabi-v7a" to "ArmeabiV7a", "x86" to "X86", "x86_64" to "X8664")
+// The ABIs the app ships (see android.defaultConfig.ndk.abiFilters): the Go build of the
+// core runs per ABI, so this list is what wires an ABI's cmake build to its libclash.so.
+val abis = listOf("arm64-v8a" to "Arm64V8a", "armeabi-v7a" to "ArmeabiV7a")
 
 androidComponents.onVariants { variant ->
     val cmakeName = if (variant.buildType == "debug") "Debug" else "RelWithDebInfo"

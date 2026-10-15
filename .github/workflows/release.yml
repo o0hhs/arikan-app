@@ -106,9 +106,9 @@ jobs:
             if [[ "$base" == *"meta"* ]]; then flavor="meta"; fi
 
             # Version-less, stable filename so the GitHub "latest release"
-            # direct link works: releases/latest/download/mikan-<flavor>-<abi>.apk
+            # direct link works: releases/latest/download/arikan-<flavor>-<abi>.apk
             # (the version stays on the release page/tag, #85).
-            out="mikan-${flavor}-${abi}.apk"
+            out="arikan-${flavor}-${abi}.apk"
             cp "$apk" "release-artifacts/$out"
           done
           ls -la release-artifacts
@@ -148,5 +148,5 @@ jobs:
           fi
           (cd release-artifacts && sha256sum *.apk > SHA256SUMS.txt)
           gh release create "${GITHUB_REF_NAME}" --verify-tag \
-            --title "Mikan ${version}" "${flags[@]}" \
+            --title "Arikan ${version}" "${flags[@]}" \
             release-artifacts/*.apk release-artifacts/SHA256SUMS.txt
