@@ -70,7 +70,9 @@ subprojects {
                 else "com.github.kr328.clash.$name"
             }
 
-            minSdk = 21
+            // 23, not 21: Material 3 Expressive ships in Material Components 1.14.0, and that
+            // release (unlike 1.13) requires Android 6.0. The design language is the trade.
+            minSdk = 23
             targetSdk = 35
 
             // Arikan starts after the Mikan line it forks (upstream is at 0.1.3): its own

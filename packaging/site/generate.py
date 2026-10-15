@@ -257,7 +257,7 @@ def main():
 <a href="{DL}/arikan-alpha-universal.apk">Universal (all shipped ABIs)</a></div>
 {dev_html}
 </div>
-<p class="muted">Links always point at the newest release. Minimum Android 5.0; the app checks for updates itself under <b>Settings → About &amp; updates</b>.</p>
+<p class="muted">Links always point at the newest release. Minimum Android 6.0; the app checks for updates itself under <b>Settings → About &amp; updates</b>.</p>
 
 <h2>Releases</h2>
 {releases_html}
