@@ -37,18 +37,22 @@ class TurnActivity : BaseActivity<TurnDesign>() {
         var lastModified = -1L
 
         suspend fun refresh() {
-            val dir = withContext(Dispatchers.IO) { activeProfileDir() }
+            val snapshot = withContext(Dispatchers.IO) {
+                val dir = activeProfileDir()
 
-            val file = dir?.let { File(it, TurnStatus.FILE_NAME) }
-            val modified = if (file != null && file.isFile) file.lastModified() else 0L
+                val file = dir?.let { File(it, TurnStatus.FILE_NAME) }
+                val modified = if (file != null && file.isFile) file.lastModified() else 0L
 
-            if (modified == lastModified) return
+                if (modified == lastModified) return@withContext null
 
-            val status = if (modified == 0L) null else TurnStatus.readFrom(dir!!)
+                val status = if (modified == 0L) null else TurnStatus.readFrom(dir!!)
 
-            lastModified = modified
+                modified to status
+            } ?: return
 
-            design.patch(status)
+            lastModified = snapshot.first
+
+            design.patch(snapshot.second)
         }
 
         refresh()
@@ -59,9 +63,11 @@ class TurnActivity : BaseActivity<TurnDesign>() {
                     when (it) {
                         // A profile change swaps the whole set of clients; start and stop move
                         // them between states. Either way what is on screen is stale.
-                        Event.ActivityStart, Event.ClashStart, Event.ClashStop,
-                        Event.ProfileChanged, Event.ProfileLoaded,
-                        -> launch {
+                        Event.ActivityStart,
+                        Event.ClashStart,
+                        Event.ClashStop,
+                        Event.ProfileChanged,
+                        Event.ProfileLoaded -> launch {
                             lastModified = -1L
                             refresh()
                         }
