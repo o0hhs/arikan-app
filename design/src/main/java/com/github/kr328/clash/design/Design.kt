@@ -70,7 +70,7 @@ abstract class Design<R>(val context: Context) :
             com.google.android.material.R.attr.colorOnSurfaceInverse
         )
         val actionColor = ctx.resolveThemedColor(
-            androidx.appcompat.R.attr.colorPrimaryInverse
+            com.google.android.material.R.attr.colorPrimaryInverse
         )
 
         // Rounded shape comes from the drawable (which already uses
