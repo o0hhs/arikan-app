@@ -131,14 +131,14 @@
                 android:visibility="@{locked ? View.GONE : View.VISIBLE}">
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/AppButton.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="@{() -> self.requests.offer(Request.InsertTemplate)}"
                     android:text="@string/config_script_reset" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/AppButton.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="@{() -> self.requests.offer(Request.Check)}"

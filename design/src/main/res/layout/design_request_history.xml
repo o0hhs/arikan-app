@@ -57,7 +57,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_request_history_clear"
-                        style="@style/Widget.Material3.Button.TextButton"
+                        style="@style/AppButton.Text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minWidth="0dp"
@@ -67,7 +67,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_request_history_export"
-                        style="@style/Widget.Material3.Button.TextButton"
+                        style="@style/AppButton.Text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minWidth="0dp"
@@ -89,7 +89,7 @@
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    style="@style/AppTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -122,7 +122,7 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/request_filter_all"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/AppChip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -130,49 +130,49 @@
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/request_filter_active"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/AppChip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/request_history_status_active" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/request_filter_closed"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/AppChip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/request_history_status_closed" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/request_filter_tcp"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/AppChip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/connections_filter_tcp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/request_filter_udp"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/AppChip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/connections_filter_udp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/request_filter_direct"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/AppChip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/connections_filter_direct" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/request_filter_proxy"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/AppChip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/connections_filter_proxy" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/request_filter_reject"
-                            style="@style/Widget.Material3.Chip.Filter"
+                            style="@style/AppChip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/connections_filter_reject" />

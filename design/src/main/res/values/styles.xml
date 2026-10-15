@@ -9,35 +9,36 @@
         <item name="android:textColor">@color/color_error</item>
     </style>
 
-    <!-- ========== Material 3 Button Styles ========== -->
+    <!-- ========== Material 3 Expressive Button Styles ========== -->
     <!-- android:foreground = D-pad/keyboard focus outline (TV). Buttons' own focus
          overlay is too faint on the neutralised theme, so the explicit ring makes
-         the focused control unmistakable. -->
-    <style name="AppButton" parent="Widget.Material3.Button">
-        <item name="cornerRadius">12dp</item>
+         the focused control unmistakable.
+
+         No cornerRadius here on purpose: the expressive button's shape is a state list
+         that morphs between a pill and a squarer shape as it is pressed and selected, and
+         an explicit radius would replace exactly that. Local cornerRadius overrides on
+         individual buttons still win over it. -->
+    <style name="AppButton" parent="Widget.Material3Expressive.Button">
         <item name="android:foreground">@drawable/focus_ring</item>
         <item name="android:stateListAnimator">@animator/focus_scale</item>
     </style>
 
-    <style name="AppButton.Outlined" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="cornerRadius">12dp</item>
+    <style name="AppButton.Outlined" parent="Widget.Material3Expressive.Button.OutlinedButton">
         <item name="android:foreground">@drawable/focus_ring</item>
         <item name="android:stateListAnimator">@animator/focus_scale</item>
     </style>
 
-    <style name="AppButton.Text" parent="Widget.Material3.Button.TextButton">
-        <item name="cornerRadius">12dp</item>
+    <style name="AppButton.Text" parent="Widget.Material3Expressive.Button.TextButton">
         <item name="android:foreground">@drawable/focus_ring</item>
         <item name="android:stateListAnimator">@animator/focus_scale</item>
     </style>
 
-    <style name="AppButton.Tonal" parent="Widget.Material3.Button.TonalButton">
-        <item name="cornerRadius">12dp</item>
+    <style name="AppButton.Tonal" parent="Widget.Material3Expressive.Button.TonalButton">
         <item name="android:foreground">@drawable/focus_ring</item>
         <item name="android:stateListAnimator">@animator/focus_scale</item>
     </style>
 
-    <style name="AppButton.Icon" parent="Widget.Material3.Button.IconButton">
+    <style name="AppButton.Icon" parent="Widget.Material3Expressive.Button.IconButton.Standard">
         <item name="android:foreground">@drawable/focus_ring</item>
         <item name="android:stateListAnimator">@animator/focus_scale</item>
     </style>
@@ -46,6 +47,8 @@
     <style name="AppTextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox" />
 
     <style name="AppTextInputLayout.Filled" parent="Widget.Material3.TextInputLayout.FilledBox" />
+
+    <style name="AppTextInputLayout.Dense" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense" />
 
     <!-- ========== Material 3 Card Styles ========== -->
     <style name="AppCard" parent="Widget.Material3.CardView.Elevated" />
@@ -101,22 +104,22 @@
     <style name="AppDropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu" />
 
     <!-- ========== Material 3 Dialog Style ========== -->
-    <style name="AppDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog" />
+    <style name="AppDialog" parent="ThemeOverlay.Material3Expressive.MaterialAlertDialog" />
 
     <!-- ========== Material 3 Switch Style ========== -->
-    <style name="AppSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch" />
+    <style name="AppSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch" />
 
     <!-- ========== Material 3 Toolbar Style ========== -->
-    <style name="AppToolbar" parent="Widget.Material3.Toolbar">
+    <style name="AppToolbar" parent="Widget.Material3Expressive.Toolbar">
         <item name="titleTextEllipsize">end</item>
     </style>
 
     <!-- ========== Material 3 Progress Indicator Style ========== -->
-    <style name="AppProgressIndicator" parent="Widget.Material3.LinearProgressIndicator" />
+    <style name="AppProgressIndicator" parent="Widget.Material3Expressive.LinearProgressIndicator" />
 
     <!-- ========== Material 3 FAB Style ========== -->
-    <style name="AppFAB" parent="Widget.Material3.FloatingActionButton.Primary" />
-    <style name="AppFAB.Round" parent="Widget.Material3.FloatingActionButton.Primary">
+    <style name="AppFAB" parent="Widget.Material3Expressive.FloatingActionButton.Primary" />
+    <style name="AppFAB.Round" parent="Widget.Material3Expressive.FloatingActionButton.Primary">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.FAB.Round</item>
     </style>
     <style name="ShapeAppearanceOverlay.App.FAB" parent="ShapeAppearanceOverlay.App.FAB.Round" />
@@ -128,52 +131,52 @@
     <!-- ========== Material 3 TextAppearance Styles ========== -->
     <!-- Shared typography for Mikan screens. -->
     <!-- Display -->
-    <style name="TextAppearance.App.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge.Emphasized" />
 
-    <style name="TextAppearance.App.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium.Emphasized" />
 
-    <style name="TextAppearance.App.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall.Emphasized" />
 
     <!-- Headline -->
-    <style name="TextAppearance.App.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge.Emphasized" />
 
-    <style name="TextAppearance.App.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium.Emphasized" />
 
-    <style name="TextAppearance.App.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall.Emphasized" />
 
     <!-- Title -->
-    <style name="TextAppearance.App.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.TitleLarge" parent="TextAppearance.Material3.TitleLarge.Emphasized" />
 
-    <style name="TextAppearance.App.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.TitleMedium" parent="TextAppearance.Material3.TitleMedium.Emphasized" />
 
-    <style name="TextAppearance.App.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="fontFamily">sans-serif-medium</item>
-    </style>
+    <!-- Expressive emphasised style: the library sets fontFamily to
+         m3_ref_typeface_brand_medium, which is sans-serif-medium — the weight this role
+         used to ask for by hand, now stated as the expressive intent it is. -->
+    <style name="TextAppearance.App.TitleSmall" parent="TextAppearance.Material3.TitleSmall.Emphasized" />
 
     <!-- Body -->
     <style name="TextAppearance.App.BodyLarge" parent="TextAppearance.Material3.BodyLarge" />

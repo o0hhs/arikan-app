@@ -42,7 +42,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/rule_search_layout"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        style="@style/AppTextInputLayout.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -75,7 +75,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_filter_all"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/AppChip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -84,7 +84,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_filter_mine"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/AppChip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rules_hub_filter_mine"
@@ -92,7 +92,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_filter_subscription"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/AppChip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rules_hub_filter_subscription"
@@ -100,7 +100,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_filter_disabled"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/AppChip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/rules_hub_filter_disabled"

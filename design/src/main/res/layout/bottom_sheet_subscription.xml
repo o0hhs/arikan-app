@@ -30,7 +30,7 @@
                     android:textSize="20sp" />
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/detail_menu"
-                    style="@style/Widget.Material3.Button.IconButton"
+                    style="?attr/materialIconButtonStyle"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="12dp"
@@ -104,7 +104,7 @@
                 android:textColor="?attr/colorOnSurfaceVariant" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/detail_update"
-                style="@style/Widget.Material3.Button.TextButton"
+                style="@style/AppButton.Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"

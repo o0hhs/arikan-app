@@ -161,7 +161,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/proxy_sheet_sort_button"
-                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_marginStart="8dp"
@@ -177,7 +177,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/proxy_sheet_filter_button"
-                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_marginStart="8dp"
@@ -193,7 +193,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/proxy_sheet_layout_button"
-                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_marginStart="6dp"
@@ -215,7 +215,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/proxy_sheet_ping_button"
-                    style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                    style="?attr/materialIconButtonFilledTonalStyle"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
                     android:contentDescription="@string/profile_ping_all_short"

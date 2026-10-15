@@ -39,7 +39,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/type_layout"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                style="@style/AppTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -60,7 +60,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/value_layout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/AppTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -83,7 +83,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_pick_app"
-            style="@style/Widget.Material3.Button.TextButton"
+            style="@style/AppButton.Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
@@ -92,7 +92,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/raw_layout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/AppTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/routing_rule_line"
@@ -137,7 +137,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_policy_direct"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="@style/AppButton.Outlined"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -147,7 +147,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_policy_reject"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="@style/AppButton.Outlined"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -158,7 +158,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/group_layout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/AppDropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -230,7 +230,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_delete"
-                style="@style/Widget.Material3.Button.TextButton"
+                style="@style/AppButton.Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delete"
@@ -239,7 +239,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_cancel"
-                style="@style/Widget.Material3.Button.TextButton"
+                style="@style/AppButton.Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cancel" />

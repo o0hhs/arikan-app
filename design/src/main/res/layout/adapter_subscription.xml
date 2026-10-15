@@ -53,7 +53,7 @@
                 </LinearLayout>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/subscription_menu"
-                    style="@style/Widget.Material3.Button.IconButton"
+                    style="?attr/materialIconButtonStyle"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="8dp"
@@ -113,7 +113,7 @@
                 android:visibility="gone" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/subscription_retry"
-                style="@style/Widget.Material3.Button.TextButton"
+                style="@style/AppButton.Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"

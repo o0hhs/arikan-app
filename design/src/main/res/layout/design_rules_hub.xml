@@ -59,7 +59,7 @@
                 android:orientation="horizontal">
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_import_rules"
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/AppButton.Text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -67,7 +67,7 @@
                     android:text="@string/routing_paste"/>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_edit_source"
-                    style="@style/Widget.Material3.Button.TextButton"
+                    style="@style/AppButton.Text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
