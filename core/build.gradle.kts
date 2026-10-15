@@ -272,9 +272,24 @@ afterEvaluate {
                 } else {
                     command[tagsIndex + 1] = tags.joinToString(",")
                 }
-
-                task.commandLine(command)
             }
+
+            // -checklinkname=0: the TURN client (native/turn) pulls in pion/turn, whose
+            // transport reaches Android's interface list through github.com/wlynxg/anet —
+            // a package that linknames net.zoneCache, the very thing Go 1.23 started
+            // refusing by default (the symbol is there, the guard is not about us). The
+            // alternative is a vendored anet; one linker flag is the smaller diff.
+            val ldflagsIndex = command.indexOf("-ldflags")
+            if (ldflagsIndex >= 0 && ldflagsIndex + 1 < command.size) {
+                command[ldflagsIndex + 1] = command[ldflagsIndex + 1] + " -checklinkname=0"
+            } else {
+                // Debug builds get no -ldflags from the plugin; insert before the package
+                // path, which is always the last argument.
+                command.add(command.size - 1, "-checklinkname=0")
+                command.add(command.size - 2, "-ldflags")
+            }
+
+            task.commandLine(command)
         }
     }
 }

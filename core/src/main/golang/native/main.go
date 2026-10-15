@@ -15,6 +15,7 @@ import (
 	"cfa/native/config"
 	"cfa/native/delegate"
 	"cfa/native/tunnel"
+	"cfa/native/turn"
 
 	"github.com/metacubex/mihomo/log"
 )
@@ -47,6 +48,10 @@ func reset() {
 	// otherwise keep the tunnel (and, on teardown, the Android VpnService / system VPN key) alive for
 	// their full timeout — 10-30s after the tunnel is already logically down. See CancelHealthChecks.
 	tunnel.CancelHealthChecks()
+
+	// And with them the TURN clients: a client holds a VK call and a local port, and it is
+	// started with a profile (see native/config.Load) — so it goes down with the profile.
+	turn.ManagerFor().Stop()
 	config.LoadDefault()
 	tunnel.ResetStatistic()
 	tunnel.CloseAllConnections()

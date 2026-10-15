@@ -17,6 +17,7 @@ import (
 	"time"
 
 	"cfa/native/app"
+	"cfa/native/turn/params"
 
 	"github.com/metacubex/mihomo/component/dialer"
 	"cfa/native/config/fetchheaders"
@@ -289,6 +290,61 @@ func writeFetchHeaders(profilePath string, header map[string][]string) {
 	_ = os.WriteFile(file, bytes, 0600)
 }
 
+// fetchTurnParams asks the same subscription for its TURN side channel and stores it next to
+// the profile. A profile's " WL" entries are ordinary proxies pointing at 127.0.0.1:9000 —
+// cfa/native/turn reads this file when the profile is loaded and runs a client for every node
+// the profile actually routes through.
+//
+// A server that does not know the parameter answers with the subscription itself (or with an
+// error page), which is why the answer is parsed before it is kept: anything that is not a
+// `# vk turn` document drops the file rather than leaving last week's parameters behind.
+//
+// Best-effort by design: this is a second request, and a subscription that imports is a
+// successful import whether or not its panel has VLESS-over-VK.
+func fetchTurnParams(path string, subscription *U.URL, r route) {
+	if subscription.Scheme != "http" && subscription.Scheme != "https" {
+		return
+	}
+
+	url := *subscription
+	query := url.Query()
+	query.Set("format", "turn")
+	url.RawQuery = query.Encode()
+
+	file := P.Join(path, params.ParamsFileName)
+
+	if _, err := fetch(&url, file, subscriptionFetchTimeout, true, r); err != nil {
+		log.Debugln("[TURN] %s: %s", url.Host, err.Error())
+		params.DropParams(path)
+
+		return
+	}
+
+	body, err := os.ReadFile(file)
+	if err != nil {
+		params.DropParams(path)
+
+		return
+	}
+
+	parsed, err := params.ParseParams(string(body))
+	if err != nil {
+		log.Debugln("[TURN] %s has no turn parameters: %s", url.Host, err.Error())
+		params.DropParams(path)
+
+		return
+	}
+
+	if err := params.SaveParams(path, parsed); err != nil {
+		log.Warnln("[TURN] %s: save parameters: %s", url.Host, err.Error())
+		params.DropParams(path)
+
+		return
+	}
+
+	log.Infoln("[TURN] %s: %d node(s) with turn parameters", url.Host, len(parsed.Nodes))
+}
+
 func FetchAndValid(
 	path string,
 	url string,
@@ -355,6 +411,10 @@ func FetchAndValid(
 		}
 
 		writeFetchHeaders(path, header)
+
+		// What the profile's WL entries need to work: the panel serves the TURN side of the
+		// same subscription under `?format=turn` (native/turn).
+		fetchTurnParams(path, parsed, route{viaProxy: viaProxy, fallback: true})
 	}
 
 	// Terminate age encryption at the door: unlike upstream CMFA (where

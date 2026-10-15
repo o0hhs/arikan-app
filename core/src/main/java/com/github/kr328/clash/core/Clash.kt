@@ -550,4 +550,21 @@ object Clash {
             Bridge.nativeSubscribeLogcat(ChannelLogcatInterface(this))
         }
     }
+
+    /**
+     * Start the VK TURN clients described by [paramsJson] — the document the core parsed out
+     * of the panel's `?format=turn` (see TurnStatus). Loading a profile does this by itself
+     * for the nodes that profile routes through; this is the manual control.
+     *
+     * Returns null on success, or the reason the parameters were refused.
+     */
+    fun turnStart(paramsJson: String): String? =
+        Bridge.nativeTurnStart(paramsJson).takeIf { it.isNotBlank() }
+
+    fun turnStop(): String? =
+        Bridge.nativeTurnStop().takeIf { it.isNotBlank() }
+
+    /** What every node's TURN client is doing: state, counters and the log tail, as JSON. */
+    fun queryTurnStatus(): TurnStatus =
+        Json.Default.decodeFromString(TurnStatus.serializer(), Bridge.nativeTurnStatus())
 }

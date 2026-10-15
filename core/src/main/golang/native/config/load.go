@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"cfa/native/app"
+	"cfa/native/turn"
 
 	"github.com/metacubex/mihomo/common/yaml"
 	"github.com/metacubex/mihomo/config"
@@ -79,6 +80,10 @@ func Load(path string) error {
 	hub.ApplyConfig(cfg)
 
 	app.ApplySubtitlePattern(rawCfg.ClashForAndroid.UiSubtitlePattern)
+
+	// The profile is live: start a client for every node its WL entries point at, and stop
+	// the previous profile's (native/turn). A profile with no such entries starts nothing.
+	turn.ManagerFor().Start(path, rawCfg.Proxy)
 
 	runtime.GC()
 
