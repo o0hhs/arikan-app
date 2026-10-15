@@ -2,6 +2,7 @@ package com.github.kr328.clash
 
 import com.github.kr328.clash.common.util.intent
 import com.github.kr328.clash.design.SettingsDesign
+import com.github.kr328.clash.turn.TurnActivity
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.selects.select
 
@@ -30,6 +31,8 @@ class SettingsActivity : BaseActivity<SettingsDesign>() {
                             startActivity(GeoSettingsActivity::class.intent)
                         SettingsDesign.Request.StartNetwork ->
                             startActivity(NetworkSettingsActivity::class.intent)
+                        SettingsDesign.Request.StartTurn ->
+                            startActivity(TurnActivity::class.intent)
                         SettingsDesign.Request.StartDnsHosts ->
                             startActivity(DnsHostsSettingsActivity::class.intent)
                         SettingsDesign.Request.StartTunnels ->

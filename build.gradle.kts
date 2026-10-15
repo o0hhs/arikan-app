@@ -56,8 +56,13 @@ subprojects {
         buildFeatures.buildConfig = true
         defaultConfig {
             if (isApp) {
+                // Arikan's own id: it has to differ from the official Mikan's for the two to
+                // be installable side by side, and it has to stay the same across our
+                // releases — the in-app updater and the panel's device fingerprint both key
+                // off it. A build can override it with custom.application.id in
+                // local.properties (see queryConfigProperty).
                 val customApplicationId = queryConfigProperty("custom.application.id") as? String?
-                applicationId = customApplicationId.takeIf { it?.isNotBlank() == true } ?: "com.nemu.clashfest.clash"
+                applicationId = customApplicationId.takeIf { it?.isNotBlank() == true } ?: "ru.arikan.app"
             }
 
             project.name.let { name ->
@@ -68,27 +73,33 @@ subprojects {
             minSdk = 21
             targetSdk = 35
 
-            versionName = "0.1.3"
+            // Arikan starts after the Mikan line it forks (upstream is at 0.1.3): its own
+            // first release is 0.2.0, so the release notes file for it is a new one rather
+            // than a rewrite of Mikan's 0.1.0 history.
+            versionName = "0.2.0"
             // Keep Android's update counter increasing when resetting the fork's display version.
-            versionCode = 10201012
+            versionCode = 10201013
 
             resValue("string", "release_name", "v$versionName")
             resValue("integer", "release_code", "$versionCode")
 
+            // The first releases ship what phones actually use: every 64-bit Android device
+            // is arm64-v8a, older 32-bit ones are armeabi-v7a. Emulator and Chromebook ABIs
+            // (x86, x86_64) need a Go toolchain triplet of their own and are a later build.
             ndk {
-                abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+                abiFilters += listOf("arm64-v8a", "armeabi-v7a")
             }
 
             externalNativeBuild {
                 cmake {
-                    abiFilters("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+                    abiFilters("arm64-v8a", "armeabi-v7a")
                 }
             }
 
             if (!isApp) {
                 consumerProguardFiles("consumer-rules.pro")
             } else {
-                setProperty("archivesBaseName", "mikan-v$versionName")
+                setProperty("archivesBaseName", "arikan-v$versionName")
             }
         }
 
@@ -107,7 +118,12 @@ subprojects {
         productFlavors {
             flavorDimensions("feature")
 
-            val removeSuffix = (queryConfigProperty("remove.suffix") as? String)?.toBoolean() == true
+            // Upstream ships mikan-alpha and mikan-meta side by side, hence the flavor's
+            // .alpha/.meta suffix. Arikan is one app whose id must be exactly ru.arikan.app,
+            // so the suffix is off unless local.properties asks for it (remove.suffix=false);
+            // debug builds get a .debug suffix from buildTypes instead, which keeps a test
+            // build installable next to a release one.
+            val removeSuffix = (queryConfigProperty("remove.suffix") as? String)?.toBoolean() ?: true
 
             create("alpha") {
                 isDefault = true
@@ -174,6 +190,14 @@ subprojects {
             }
             named("debug") {
                 versionNameSuffix = ".debug"
+
+                if (isApp) {
+                    // The application's own id, so a debug build and a release build can both
+                    // be installed: they are signed with different keys, and Android refuses
+                    // an update across keys. See the flavor suffix note above. Libraries must
+                    // not carry a suffix — they have no id of their own to change.
+                    applicationIdSuffix = ".debug"
+                }
             }
         }
 
@@ -191,7 +215,7 @@ subprojects {
                     isEnable = true
                     isUniversalApk = true
                     reset()
-                    include("arm64-v8a", "armeabi-v7a", "x86", "x86_64")
+                    include("arm64-v8a", "armeabi-v7a")
                 }
             }
         }

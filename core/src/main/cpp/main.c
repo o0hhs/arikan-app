@@ -169,6 +169,40 @@ Java_com_github_kr328_clash_core_bridge_Bridge_nativeStopHttp(JNIEnv *env, jobje
     stopHttp();
 }
 
+// The VK TURN clients of the active profile start and stop with the profile itself (see
+// native/turn in the Go side); these drive them by hand, and turnStatus answers what they are
+// doing. All three return a string and never NULL — jni_new_string would strlen() it.
+
+JNIEXPORT jstring JNICALL
+Java_com_github_kr328_clash_core_bridge_Bridge_nativeTurnStart(JNIEnv *env, jobject thiz,
+                                                               jstring params_json) {
+    TRACE_METHOD();
+
+    scoped_string _params_json = get_string(params_json);
+
+    scoped_string response = turnStart(_params_json);
+
+    return new_string(response);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_github_kr328_clash_core_bridge_Bridge_nativeTurnStop(JNIEnv *env, jobject thiz) {
+    TRACE_METHOD();
+
+    scoped_string response = turnStop();
+
+    return new_string(response);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_github_kr328_clash_core_bridge_Bridge_nativeTurnStatus(JNIEnv *env, jobject thiz) {
+    TRACE_METHOD();
+
+    scoped_string response = turnStatus();
+
+    return new_string(response);
+}
+
 JNIEXPORT jstring JNICALL
 Java_com_github_kr328_clash_core_bridge_Bridge_nativeQueryGroupNames(JNIEnv *env, jobject thiz,
                                                                      jboolean exclude_not_selectable) {

@@ -152,7 +152,9 @@ tasks.matching { it.name == "clean" }.configureEach {
 //
 // The package is intentionally isolated from cfa/native/app, so 'go test'
 // works on any developer workstation (Windows/macOS/Linux) without
-// platform stubs or NDK.
+// platform stubs or NDK. native/turn/params is isolated the same way — it is
+// the panel's `?format=turn` document, parsed and matched against a profile,
+// and a wrong match is a WL entry that silently carries nothing.
 val goTestNativeSnapshot by tasks.registering(Exec::class) {
     description = "Run go unit tests for the native snapshot package"
     group = "verification"
@@ -164,6 +166,7 @@ val goTestNativeSnapshot by tasks.registering(Exec::class) {
     commandLine(
         "go", "test", "-tags", "foss,with_gvisor,cmfa",
         "./native/snapshot/...", "./native/useragent/...", "./native/reality/...",
+        "./native/turn/params/...",
         // Tests shipped inside the patch series run against the patched tree, so a
         // patch that applied but no longer does what it claims fails here.
         "-run", "Test", "github.com/metacubex/mihomo/component/tls",
@@ -272,14 +275,31 @@ afterEvaluate {
                 } else {
                     command[tagsIndex + 1] = tags.joinToString(",")
                 }
-
-                task.commandLine(command)
             }
+
+            // -checklinkname=0: the TURN client (native/turn) pulls in pion/turn, whose
+            // transport reaches Android's interface list through github.com/wlynxg/anet —
+            // a package that linknames net.zoneCache, the very thing Go 1.23 started
+            // refusing by default (the symbol is there, the guard is not about us). The
+            // alternative is a vendored anet; one linker flag is the smaller diff.
+            val ldflagsIndex = command.indexOf("-ldflags")
+            if (ldflagsIndex >= 0 && ldflagsIndex + 1 < command.size) {
+                command[ldflagsIndex + 1] = command[ldflagsIndex + 1] + " -checklinkname=0"
+            } else {
+                // Debug builds get no -ldflags from the plugin; insert before the package
+                // path, which is always the last argument.
+                command.add(command.size - 1, "-checklinkname=0")
+                command.add(command.size - 2, "-ldflags")
+            }
+
+            task.commandLine(command)
         }
     }
 }
 
-val abis = listOf("arm64-v8a" to "Arm64V8a", "armeabi-v7a" to "ArmeabiV7a", "x86" to "X86", "x86_64" to "X8664")
+// The ABIs the app ships (see android.defaultConfig.ndk.abiFilters): the Go build of the
+// core runs per ABI, so this list is what wires an ABI's cmake build to its libclash.so.
+val abis = listOf("arm64-v8a" to "Arm64V8a", "armeabi-v7a" to "ArmeabiV7a")
 
 androidComponents.onVariants { variant ->
     val cmakeName = if (variant.buildType == "debug") "Debug" else "RelWithDebInfo"

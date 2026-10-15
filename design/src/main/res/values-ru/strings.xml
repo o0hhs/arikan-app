@@ -1079,8 +1079,8 @@
     <string name="app_routing_filter_com">com.*</string>
     <string name="app_routing_filter_other">Прочее</string>
     <string name="app_routing_filter_ru">ru.*</string>
-    <string name="application_name_alpha">Mikan</string>
-    <string name="application_name_meta">Mikan</string>
+    <string name="application_name_alpha">Arikan</string>
+    <string name="application_name_meta">Arikan</string>
     <string name="blacklist">Чёрный список</string>
     <string name="docs_url_operator_headers">https://github.com/Nemu-x/ClashFest/wiki/Operator-API-Headers</string>
     <string name="docs_url_operator_overview">https://github.com/Nemu-x/ClashFest/wiki/Operator-API</string>
@@ -1100,8 +1100,8 @@
     <string name="import_done_named">Импортировано как «%s»</string>
     <string name="import_resolving">Получение подписки…</string>
     <string name="inline">Встроенный</string>
-    <string name="launch_name_alpha">Mikan</string>
-    <string name="launch_name_meta">Mikan</string>
+    <string name="launch_name_alpha">Arikan</string>
+    <string name="launch_name_meta">Arikan</string>
     <string name="main_open_subscription_identity_summary">HWID, схема clashfest:// и кнопки копирования</string>
     <string name="operator_api_spec_url">https://github.com/Nemu-x/ClashFest/wiki/Operator-API</string>
     <string name="proxy_open_yaml">YAML прокси из конфига</string>
@@ -1410,4 +1410,23 @@
     <string name="chain_removed">Цепочка удалена. Подписка снова использует обычную маршрутизацию.</string>
     <string name="proxy_layout_show_dropdown">Группы выпадающими списками</string>
     <string name="proxy_layout_show_tabs">Группы вкладками</string>
+    <!-- WL: клиенты VK TURN, которые обслуживают WL-записи панели (TurnDesign). -->
+    <string name="turn_title">WL</string>
+    <string name="turn_settings_entry">WL</string>
+    <string name="turn_settings_summary">Клиенты VK TURN для WL-сервера подписки: состояние, лог, капча.</string>
+    <string name="turn_empty">В этой подписке нет параметров WL. Панель отдаёт их вместе с подпиской — обновите её или импортируйте заново, если панель начала отдавать их позже.</string>
+    <string name="turn_no_nodes">Панель не сообщает нод для этой подписки.</string>
+    <string name="turn_summary">Несут трафик: %1$d из %2$d нод.</string>
+    <string name="turn_node_details">%1$s · %2$s · %3$s · потоков %4$d/%5$d · переподключений %6$d</string>
+    <string name="turn_node_proxies">В подписке: %1$s</string>
+    <string name="turn_captcha_open">Ответить на капчу</string>
+    <string name="turn_captcha_title">Капча VK</string>
+    <string name="turn_log_title">Лог клиента</string>
+    <string name="turn_state_starting">запускается</string>
+    <string name="turn_state_running">работает</string>
+    <string name="turn_state_captcha">нужна капча</string>
+    <string name="turn_state_failed">ошибка</string>
+    <string name="turn_state_stopped">остановлен</string>
+    <string name="turn_state_unused">не используется</string>
 </resources>
+

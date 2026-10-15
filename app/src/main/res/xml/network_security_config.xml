@@ -7,4 +7,11 @@
             <certificates src="user" />
         </trust-anchors>
     </base-config>
+    <!-- The VK TURN client serves its captcha page on http://127.0.0.1:8765 and the WL screen
+         shows it in a WebView; cleartext is blocked by default from API 28 on. Loopback only:
+         nothing here loosens cleartext for anything on a network. -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">127.0.0.1</domain>
+        <domain includeSubdomains="false">localhost</domain>
+    </domain-config>
 </network-security-config>

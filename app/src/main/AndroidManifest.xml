@@ -153,6 +153,18 @@
             android:exported="false"
             android:label="@string/logcat" />
         <activity
+            android:name=".turn.TurnActivity"
+            android:configChanges="uiMode"
+            android:exported="false"
+            android:label="@string/turn_title" />
+        <!-- VK's captcha page, served by the TURN client on loopback. Not exported, and the
+             page it loads is checked to be loopback as well (see TurnCaptchaActivity). -->
+        <activity
+            android:name=".turn.TurnCaptchaActivity"
+            android:configChanges="uiMode"
+            android:exported="false"
+            android:label="@string/turn_captcha_title" />
+        <activity
             android:name=".SettingsActivity"
             android:configChanges="uiMode"
             android:exported="false"

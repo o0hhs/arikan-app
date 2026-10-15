@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="PluralsCandidate">
-    <string name="launch_name_meta">Mikan</string>
-    <string name="launch_name_alpha">Mikan</string>
-    <string name="application_name_meta">Mikan</string>
-    <string name="application_name_alpha">Mikan</string>
+    <string name="launch_name_meta">Arikan</string>
+    <string name="launch_name_alpha">Arikan</string>
+    <string name="application_name_meta">Arikan</string>
+    <string name="application_name_alpha">Arikan</string>
 
     <string name="stopped">Stopped</string>
     <string name="tap_to_start">Tap to start</string>
@@ -1419,4 +1419,23 @@ Password: %4$s</string>
     <string name="chain_removed">Chain removed. The subscription uses its normal routing again.</string>
     <string name="proxy_layout_show_dropdown">Show groups as dropdown lists</string>
     <string name="proxy_layout_show_tabs">Show groups as tabs</string>
+    <!-- WL: the VK TURN clients that carry a panel's WL entries (TurnDesign). -->
+    <string name="turn_title">WL</string>
+    <string name="turn_settings_entry">WL</string>
+    <string name="turn_settings_summary">The VK TURN clients behind your subscription\'s WL server: state, log, captcha.</string>
+    <string name="turn_empty">This subscription has no WL parameters. They come from the panel with the subscription itself — update it, or import it again if the panel started serving them later.</string>
+    <string name="turn_no_nodes">The panel reports no nodes for this subscription.</string>
+    <string name="turn_summary">%1$d of %2$d nodes carry traffic.</string>
+    <string name="turn_node_details">%1$s · %2$s · %3$s · %4$d/%5$d streams · retries %6$d</string>
+    <string name="turn_node_proxies">In the subscription: %1$s</string>
+    <string name="turn_captcha_open">Answer the captcha</string>
+    <string name="turn_captcha_title">VK captcha</string>
+    <string name="turn_log_title">Client log</string>
+    <string name="turn_state_starting">starting</string>
+    <string name="turn_state_running">running</string>
+    <string name="turn_state_captcha">captcha</string>
+    <string name="turn_state_failed">error</string>
+    <string name="turn_state_stopped">stopped</string>
+    <string name="turn_state_unused">not used</string>
 </resources>
+

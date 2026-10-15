@@ -94,7 +94,7 @@ jobs:
             flavor="alpha"
             if [[ "$base" == *"meta"* ]]; then flavor="meta"; fi
 
-            out="mikan-dev-${SHORT_SHA}-${flavor}-${abi}.apk"
+            out="arikan-dev-${SHORT_SHA}-${flavor}-${abi}.apk"
             cp "$apk" "release-artifacts/$out"
           done
 
