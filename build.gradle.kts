@@ -190,10 +190,14 @@ subprojects {
             }
             named("debug") {
                 versionNameSuffix = ".debug"
-                // Its own id, so a debug build and a release build can both be installed:
-                // they are signed with different keys, and Android refuses an update across
-                // keys. See the flavor suffix note above.
-                applicationIdSuffix = ".debug"
+
+                if (isApp) {
+                    // The application's own id, so a debug build and a release build can both
+                    // be installed: they are signed with different keys, and Android refuses
+                    // an update across keys. See the flavor suffix note above. Libraries must
+                    // not carry a suffix — they have no id of their own to change.
+                    applicationIdSuffix = ".debug"
+                }
             }
         }
 
