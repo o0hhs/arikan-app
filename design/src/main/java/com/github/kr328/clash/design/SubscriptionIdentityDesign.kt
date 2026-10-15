@@ -13,6 +13,7 @@ import com.github.kr328.clash.design.databinding.DesignSubscriptionIdentityBindi
 import com.github.kr328.clash.design.util.layoutInflater
 import com.github.kr328.clash.design.util.resolveThemedColor
 import com.github.kr328.clash.design.util.root
+import androidx.appcompat.R as AppCompatR
 import com.google.android.material.R as MaterialR
 
 class SubscriptionIdentityDesign(context: Context) : Design<SubscriptionIdentityDesign.Request>(context) {
@@ -74,7 +75,7 @@ class SubscriptionIdentityDesign(context: Context) : Design<SubscriptionIdentity
             layoutParams = LinearLayout.LayoutParams(px(22), px(22)).apply { marginEnd = px(14) }
             setImageResource(link.iconRes)
             imageTintList = ColorStateList.valueOf(
-                context.resolveThemedColor(MaterialR.attr.colorPrimary)
+                context.resolveThemedColor(AppCompatR.attr.colorPrimary)
             )
         }
         row.addView(icon)

@@ -10,6 +10,7 @@ import com.github.kr328.clash.design.databinding.ItemTurnNodeBinding
 import com.github.kr328.clash.design.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import androidx.appcompat.R as AppCompatR
 import com.google.android.material.R as MaterialR
 
 /**
@@ -117,9 +118,9 @@ class TurnDesign(context: Context) : Design<TurnDesign.Request>(context) {
     }
 
     private fun stateColor(state: String): Int = when (state) {
-        STATE_RUNNING -> MaterialR.attr.colorPrimary
+        STATE_RUNNING -> AppCompatR.attr.colorPrimary
         STATE_CAPTCHA -> MaterialR.attr.colorTertiary
-        STATE_FAILED -> MaterialR.attr.colorError
+        STATE_FAILED -> AppCompatR.attr.colorError
         else -> MaterialR.attr.colorOnSurfaceVariant
     }
 

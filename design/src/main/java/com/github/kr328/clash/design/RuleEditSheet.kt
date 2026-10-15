@@ -383,7 +383,7 @@ class RuleEditSheet(
         tintPolicyButton(
             btnPolicyReject,
             rejectChecked,
-            MaterialColors.getColor(btnPolicyReject, com.google.android.material.R.attr.colorErrorContainer),
+            MaterialColors.getColor(btnPolicyReject, androidx.appcompat.R.attr.colorErrorContainer),
             MaterialColors.getColor(btnPolicyReject, com.google.android.material.R.attr.colorOnErrorContainer),
         )
     }

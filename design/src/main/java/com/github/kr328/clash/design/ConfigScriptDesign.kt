@@ -7,6 +7,7 @@ import com.github.kr328.clash.design.databinding.DesignConfigScriptBinding
 import com.github.kr328.clash.design.util.layoutInflater
 import com.github.kr328.clash.design.util.root
 import com.google.android.material.color.MaterialColors
+import androidx.appcompat.R as AppCompatR
 import com.google.android.material.R as MaterialR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -73,7 +74,7 @@ class ConfigScriptDesign(context: Context) : Design<ConfigScriptDesign.Request>(
     suspend fun showError(error: ConfigScriptError) = withContext(Dispatchers.Main) {
         binding.statusText.text = context.getString(messageFor(error))
         binding.statusText.setTextColor(
-            MaterialColors.getColor(binding.statusText, MaterialR.attr.colorError),
+            MaterialColors.getColor(binding.statusText, AppCompatR.attr.colorError),
         )
         binding.statusText.visibility = View.VISIBLE
     }
