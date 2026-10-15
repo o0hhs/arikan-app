@@ -34,7 +34,7 @@
                 android:maxLines="2"
                 android:textAppearance="@style/TextAppearance.App.BodyLarge"
                 android:textColor="?attr/colorOnSurface"
-                tools:text="🇩🇪 Германия" />
+                tools:text="Germany" />
 
             <TextView
                 android:id="@+id/state"
@@ -61,7 +61,7 @@
             android:layout_marginTop="2dp"
             android:textAppearance="@style/TextAppearance.App.BodySmall"
             android:textColor="?attr/colorOnSurfaceVariant"
-            tools:text="Подписка: 🇩🇪 Германия WL" />
+            tools:text="Subscription: Germany WL" />
 
         <TextView
             android:id="@+id/error"
