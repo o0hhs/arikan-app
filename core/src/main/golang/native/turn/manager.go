@@ -298,6 +298,16 @@ func (m *Manager) startRunner(node params.Node, base, streams int) *runner {
 	go func() {
 		defer close(run.done)
 
+		// The client recovers panics inside its own streams and loops; this is the last net.
+		// It runs in the process that carries the user's tunnel, where a panic that escapes a
+		// goroutine is not an error — it is the VPN service dying and being restarted, with the
+		// user's traffic along for the ride.
+		defer func() {
+			if r := recover(); r != nil {
+				run.fail(fmt.Sprintf("client panicked: %v", r))
+			}
+		}()
+
 		if err := vkclient.Run(ctx, cfg); err != nil {
 			run.fail(err.Error())
 		}
