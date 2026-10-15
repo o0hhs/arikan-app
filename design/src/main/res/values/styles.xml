@@ -118,8 +118,14 @@
     <style name="AppProgressIndicator" parent="Widget.Material3Expressive.LinearProgressIndicator" />
 
     <!-- ========== Material 3 FAB Style ========== -->
-    <style name="AppFAB" parent="Widget.Material3Expressive.FloatingActionButton.Primary" />
-    <style name="AppFAB.Round" parent="Widget.Material3Expressive.FloatingActionButton.Primary">
+    <!-- The expressive FAB is primary-container coloured by default (the library's own theme
+         overlay); this app's FABs have always been primary, so the expressive overlay that
+         keeps that is pinned here rather than letting the default repaint them. -->
+    <style name="AppFAB" parent="Widget.Material3Expressive.FloatingActionButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Material3Expressive.FloatingActionButton.Primary</item>
+    </style>
+    <style name="AppFAB.Round" parent="Widget.Material3Expressive.FloatingActionButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Material3Expressive.FloatingActionButton.Primary</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.FAB.Round</item>
     </style>
     <style name="ShapeAppearanceOverlay.App.FAB" parent="ShapeAppearanceOverlay.App.FAB.Round" />
