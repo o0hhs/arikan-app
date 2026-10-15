@@ -78,10 +78,12 @@ class TurnActivity : BaseActivity<TurnDesign>() {
                 design.requests.onReceive {
                     when (it) {
                         TurnDesign.Request.Close -> finish()
-                        is TurnDesign.Request.OpenCaptcha -> startActivity(
-                            TurnCaptchaActivity::class.intent
-                                .putExtra(TurnCaptchaActivity.EXTRA_URL, it.url)
-                        )
+                        TurnDesign.Request.OpenCaptcha -> design.captchaUrl?.let { url ->
+                            startActivity(
+                                TurnCaptchaActivity::class.intent
+                                    .putExtra(TurnCaptchaActivity.EXTRA_URL, url)
+                            )
+                        }
                     }
                 }
                 if (activityStarted) {

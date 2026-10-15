@@ -21,12 +21,19 @@ import com.google.android.material.R as MaterialR
  * makes that second entry work, and this is where they can be watched.
  */
 class TurnDesign(context: Context) : Design<TurnDesign.Request>(context) {
-    sealed class Request {
-        object Close : Request()
+    enum class Request {
+        Close,
 
         /** Open the client's own captcha page, which it serves on loopback. */
-        data class OpenCaptcha(val url: String) : Request()
+        OpenCaptcha,
     }
+
+    /**
+     * The captcha page waiting to be answered, if any — the URL a client serves while it needs
+     * a human (see [patch]). There is one page per process, so one of them at a time.
+     */
+    var captchaUrl: String? = null
+        private set
 
     private val binding = DesignTurnBinding
         .inflate(context.layoutInflater, context.root, false)
@@ -58,6 +65,8 @@ class TurnDesign(context: Context) : Design<TurnDesign.Request>(context) {
             else -> context.getString(R.string.turn_summary, nodes.count { it.state == STATE_RUNNING && it.streams > 0 }, nodes.size)
         }
 
+        captchaUrl = nodes.firstOrNull { !it.captchaUrl.isNullOrBlank() }?.captchaUrl
+
         for (node in nodes) {
             val item = ItemTurnNodeBinding.inflate(context.layoutInflater, binding.nodes, false)
 
@@ -81,9 +90,7 @@ class TurnDesign(context: Context) : Design<TurnDesign.Request>(context) {
             item.error.text = problem
 
             item.captcha.isVisible = !node.captchaUrl.isNullOrBlank()
-            item.captcha.setOnClickListener {
-                node.captchaUrl?.let { url -> requests.trySend(Request.OpenCaptcha(url)) }
-            }
+            item.captcha.setOnClickListener { requests.trySend(Request.OpenCaptcha) }
 
             val lines = status?.let { node.logLines(it) }.orEmpty()
             item.log.isVisible = lines.isNotEmpty()
