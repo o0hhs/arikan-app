@@ -29,7 +29,7 @@ object GitHubReleaseUpdate {
 
     suspend fun fetchLatest(): Info? = withContext(Dispatchers.IO) {
         runCatching {
-            val endpoint = "https://api.github.com/repos/getmikan/MikanApp/releases/latest"
+            val endpoint = "https://api.github.com/repos/o0hhs/arikan-app/releases/latest"
             val text = HttpTextFetcher.fetchUtf8(
                 endpoint,
                 connectTimeoutMs = AppNetworkDefaults.CONNECT_TIMEOUT_MS,
@@ -99,7 +99,7 @@ object GitHubReleaseUpdate {
     ): Long {
         if (!UpdateApkVerifier.isTrustedDownloadUrl(apkUrl)) return -1L
         val dm = context.getSystemService(DownloadManager::class.java) ?: return -1L
-        val fileName = (apkName ?: "mikan-$tagName.apk")
+        val fileName = (apkName ?: "arikan-$tagName.apk")
             .replace(Regex("""[^A-Za-z0-9._-]"""), "_")
         val request = DownloadManager.Request(Uri.parse(apkUrl))
             .setTitle(context.getString(com.github.kr328.clash.design.R.string.about_update_available, tagName))

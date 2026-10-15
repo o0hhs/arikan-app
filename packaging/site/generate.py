@@ -19,7 +19,7 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
-REPO = "getmikan/MikanApp"
+REPO = "o0hhs/arikan-app"
 DL = f"https://github.com/{REPO}/releases/latest/download"
 DEV_TAG = "dev-latest"
 DEV_PAGE = f"https://github.com/{REPO}/releases/tag/{DEV_TAG}"
@@ -250,13 +250,11 @@ def main():
 <div class="grid">
 <div class="card primary"><h3>📱 Phone &amp; tablet</h3>
 <p>Every Android phone made in the last decade is 64-bit ARM. Not sure? Take this one.</p>
-<a class="btn" href="{DL}/mikan-alpha-arm64-v8a.apk">⬇ Download APK (arm64-v8a)</a>
-<a href="{DL}/mikan-alpha-armeabi-v7a.apk">32-bit ARM (armeabi-v7a) — very old phones, some TV boxes</a></div>
-<div class="card"><h3>📺 Android TV, emulators, Chromebooks</h3>
-<p>Pick by CPU, or take the universal build that carries all of them.</p>
-<a href="{DL}/mikan-alpha-universal.apk">Universal (all ABIs, largest)</a>
-<a href="{DL}/mikan-alpha-x86_64.apk">x86_64 — emulators, Chromebooks, x86 TV boxes</a>
-<a href="{DL}/mikan-alpha-x86.apk">x86 — 32-bit Intel</a></div>
+<a class="btn" href="{DL}/arikan-alpha-arm64-v8a.apk">⬇ Download APK (arm64-v8a)</a>
+<a href="{DL}/arikan-alpha-armeabi-v7a.apk">32-bit ARM (armeabi-v7a) — very old phones, some TV boxes</a></div>
+<div class="card"><h3>📦 Both architectures in one file</h3>
+<p>Install this if you are unsure which CPU your device has; it is the largest of the three.</p>
+<a href="{DL}/arikan-alpha-universal.apk">Universal (all shipped ABIs)</a></div>
 {dev_html}
 </div>
 <p class="muted">Links always point at the newest release. Minimum Android 5.0; the app checks for updates itself under <b>Settings → About &amp; updates</b>.</p>

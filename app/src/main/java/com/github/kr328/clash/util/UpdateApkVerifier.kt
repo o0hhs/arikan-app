@@ -12,8 +12,11 @@ import java.util.Locale
 object UpdateApkVerifier {
     private const val TRUSTED_SCHEME = "https"
     private const val TRUSTED_HOST = "github.com"
-    private const val TRUSTED_OWNER = "getmikan"
-    private const val TRUSTED_REPO = "MikanApp"
+    // Where Arikan's APKs come from. The check exists so a compromised or spoofed download URL
+    // cannot talk the app into installing a foreign package under its own name, so it has to
+    // name the repository that actually publishes this app.
+    private const val TRUSTED_OWNER = "o0hhs"
+    private const val TRUSTED_REPO = "arikan-app"
 
     fun isTrustedDownloadUrl(url: String?): Boolean {
         val uri = trustedGitHubUri(url) ?: return false

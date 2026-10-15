@@ -152,7 +152,9 @@ tasks.matching { it.name == "clean" }.configureEach {
 //
 // The package is intentionally isolated from cfa/native/app, so 'go test'
 // works on any developer workstation (Windows/macOS/Linux) without
-// platform stubs or NDK.
+// platform stubs or NDK. native/turn/params is isolated the same way — it is
+// the panel's `?format=turn` document, parsed and matched against a profile,
+// and a wrong match is a WL entry that silently carries nothing.
 val goTestNativeSnapshot by tasks.registering(Exec::class) {
     description = "Run go unit tests for the native snapshot package"
     group = "verification"
@@ -164,6 +166,7 @@ val goTestNativeSnapshot by tasks.registering(Exec::class) {
     commandLine(
         "go", "test", "-tags", "foss,with_gvisor,cmfa",
         "./native/snapshot/...", "./native/useragent/...", "./native/reality/...",
+        "./native/turn/params/...",
         // Tests shipped inside the patch series run against the patched tree, so a
         // patch that applied but no longer does what it claims fails here.
         "-run", "Test", "github.com/metacubex/mihomo/component/tls",
