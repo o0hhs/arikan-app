@@ -114,16 +114,14 @@ subprojects {
                 resources {
                     excludes.add("DebugProbesKt.bin")
                 }
-            }
 
-            packaging {
                 jniLibs {
                     // Keep the native libraries compressed in the APK. From minSdk 23 Gradle
                     // stores them uncompressed and page-aligned so the loader can map them
                     // straight out of the APK — but the Go core alone is 88 MB, which took the
                     // arm64 APK from 53 MB to 112 MB. Compression costs an unpack at install
-                    // time; it saves half the download on mobile data. Flip to false if
-                    // install speed ever matters more than the download.
+                    // time; it saves half the download on mobile data. Flip to false if install
+                    // speed ever matters more than the download.
                     useLegacyPackaging = true
                 }
             }
