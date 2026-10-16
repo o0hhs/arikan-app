@@ -61,6 +61,18 @@ Every client numbers its streams in its own range of 100 (`StreamIDBase`), so a 
 `stream_base`, and both the Go status and the app's screen use it to split one shared log by
 node. Lines the core itself writes (starting a node, refusing one) are prefixed `[turn]`.
 
+## When the client itself breaks
+
+The client is third-party code running in the process that carries the tunnel, so a bug in it
+must not be able to cost the tunnel: it recovers panics inside its own streams and loops
+(`recoverPanic` in the fork), and the core recovers around the goroutine that runs a node's
+client. A panic therefore shows up as one node in `failed` with the reason in `last_error`,
+and the rest of the tunnel keeps working.
+
+That is not hypothetical — the first build that reached a phone died in a restart loop because
+the VLESS path numbered its sessions from 0 and handed that number out as a stream ID, which
+belongs to no client. See the fork's `EMBEDDING.md` for what that taught the code.
+
 ## When it does not work
 
 | Symptom | Look at |

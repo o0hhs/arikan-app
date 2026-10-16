@@ -70,7 +70,9 @@ subprojects {
                 else "com.github.kr328.clash.$name"
             }
 
-            minSdk = 21
+            // 23, not 21: Material 3 Expressive ships in Material Components 1.14.0, and that
+            // release (unlike 1.13) requires Android 6.0. The design language is the trade.
+            minSdk = 23
             targetSdk = 35
 
             // Arikan starts after the Mikan line it forks (upstream is at 0.1.3): its own
@@ -111,6 +113,16 @@ subprojects {
             packagingOptions {
                 resources {
                     excludes.add("DebugProbesKt.bin")
+                }
+
+                jniLibs {
+                    // Keep the native libraries compressed in the APK. From minSdk 23 Gradle
+                    // stores them uncompressed and page-aligned so the loader can map them
+                    // straight out of the APK — but the Go core alone is 88 MB, which took the
+                    // arm64 APK from 53 MB to 112 MB. Compression costs an unpack at install
+                    // time; it saves half the download on mobile data. Flip to false if install
+                    // speed ever matters more than the download.
+                    useLegacyPackaging = true
                 }
             }
         }

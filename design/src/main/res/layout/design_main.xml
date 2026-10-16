@@ -254,7 +254,7 @@
                          so a fresh TV can enable remote control to receive a subscription. -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/main_companion_empty_button"
-                        style="@style/Widget.Material3.Button.TonalButton"
+                        style="@style/AppButton.Tonal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -336,7 +336,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/main_power_card"
-                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        style="?attr/materialIconButtonFilledStyle"
                         android:layout_width="180dp"
                         android:layout_height="180dp"
                         android:layout_gravity="center"
@@ -713,7 +713,7 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/main_active_profile_update"
-                            style="@style/Widget.Material3.Button.TonalButton"
+                            style="@style/AppButton.Tonal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -735,7 +735,7 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/main_active_profile_support"
-                            style="@style/Widget.Material3.Button.TonalButton"
+                            style="@style/AppButton.Tonal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -926,7 +926,7 @@
                         android:textSize="22sp" />
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/profiles_tab_add"
-                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        style="?attr/materialIconButtonFilledStyle"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="12dp"
@@ -940,7 +940,7 @@
                         app:iconSize="24dp" />
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/profiles_tab_sort"
-                        style="@style/Widget.Material3.Button.IconButton"
+                        style="?attr/materialIconButtonStyle"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_marginStart="8dp"
@@ -1509,7 +1509,7 @@
                         -->
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/operator_cabinet_button"
-                            style="@style/Widget.Material3.Button.TonalButton"
+                            style="@style/AppButton.Tonal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"

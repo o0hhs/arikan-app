@@ -39,6 +39,7 @@ import com.github.kr328.clash.service.store.ServiceStore
 import java.io.File
 import java.io.FileOutputStream
 import androidx.core.view.doOnLayout
+import androidx.appcompat.R as AppCompatR
 import com.google.android.material.R as MaterialR
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -722,7 +723,7 @@ class MainDesign(context: Context) : Design<MainDesign.Request>(context) {
             }
             setImageResource(link.iconRes)
             imageTintList = android.content.res.ColorStateList.valueOf(
-                context.resolveThemedColor(MaterialR.attr.colorPrimary)
+                context.resolveThemedColor(AppCompatR.attr.colorPrimary)
             )
         }
         row.addView(icon)
@@ -809,7 +810,7 @@ class MainDesign(context: Context) : Design<MainDesign.Request>(context) {
             starting -> 8f
             else -> 7f
         }
-        val accentBg = brandAccentColor() ?: context.resolveThemedColor(com.google.android.material.R.attr.colorPrimary)
+        val accentBg = brandAccentColor() ?: context.resolveThemedColor(androidx.appcompat.R.attr.colorPrimary)
         val bgColor = context.resolveThemedColor(MaterialR.attr.colorSurfaceContainerHighest)
         button.backgroundTintList = ColorStateList.valueOf(bgColor)
         button.elevation = elevationDp * context.resources.displayMetrics.density
@@ -1144,7 +1145,7 @@ class MainDesign(context: Context) : Design<MainDesign.Request>(context) {
             image.setPadding(pad, pad, pad, pad)
             image.setImageResource(R.drawable.ic_baseline_language)
             image.imageTintList = ColorStateList.valueOf(
-                context.resolveThemedColor(MaterialR.attr.colorPrimary),
+                context.resolveThemedColor(AppCompatR.attr.colorPrimary),
             )
         }
 
@@ -1386,7 +1387,7 @@ class MainDesign(context: Context) : Design<MainDesign.Request>(context) {
                 java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM).format(java.util.Date(profile.expire)))
         } else ""
         sheet.detailExpiry.setTextColor(context.resolveThemedColor(
-            if (profile.expire > 0L && profile.expire <= System.currentTimeMillis()) MaterialR.attr.colorError
+            if (profile.expire > 0L && profile.expire <= System.currentTimeMillis()) AppCompatR.attr.colorError
             else MaterialR.attr.colorOnSurfaceVariant,
         ))
         sheet.detailUpdated.text = if (profile.updatedAt > 0L) {
@@ -1436,7 +1437,7 @@ class MainDesign(context: Context) : Design<MainDesign.Request>(context) {
         sheet.detailUpdate.setOnClickListener { requestSubscriptionUpdate(profile) }
         sheet.detailUpdateStatus.visibility = if (failed) View.VISIBLE else View.GONE
         sheet.detailUpdateStatus.setText(R.string.subscription_update_error)
-        sheet.detailUpdateStatus.setTextColor(context.resolveThemedColor(MaterialR.attr.colorError))
+        sheet.detailUpdateStatus.setTextColor(context.resolveThemedColor(AppCompatR.attr.colorError))
     }
 
     fun setSubscriptionActivating(uuid: UUID?) {
@@ -2246,7 +2247,7 @@ class MainDesign(context: Context) : Design<MainDesign.Request>(context) {
         tabItemTouchHelper.attachToRecyclerView(binding.profilesTabList)
         binding.profilesTabSort.setOnClickListener { showProfilesTabSort(it) }
         binding.profilesTabRefresh.setOnChildScrollUpCallback { _, _ -> binding.profilesTabList.canScrollVertically(-1) }
-        binding.profilesTabRefresh.setColorSchemeColors(context.resolveThemedColor(MaterialR.attr.colorPrimary))
+        binding.profilesTabRefresh.setColorSchemeColors(context.resolveThemedColor(AppCompatR.attr.colorPrimary))
         binding.profilesTabRefresh.setOnRefreshListener { requestAllSubscriptionUpdates() }
 
         val card = binding.mainPowerCard

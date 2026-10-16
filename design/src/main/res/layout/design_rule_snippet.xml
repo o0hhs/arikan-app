@@ -65,7 +65,7 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_update_all_rule_sets"
-                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            style="@style/AppButton.Outlined"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"

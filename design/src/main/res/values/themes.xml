@@ -4,7 +4,7 @@
         <item name="android:background">@drawable/bg_bottom_sheet</item>
     </style>
 
-    <style name="AppFullScreenDialogLightBase" parent="Theme.Material3.Light.Dialog">
+    <style name="AppFullScreenDialogLightBase" parent="Theme.Material3Expressive.Light.Dialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -46,7 +46,7 @@
         <item name="colorSurfaceContainerHigh">@color/md3_light_surfaceContainerHigh</item>
     </style>
 
-    <style name="AppFullScreenDialogDarkBase" parent="Theme.Material3.Dark.Dialog">
+    <style name="AppFullScreenDialogDarkBase" parent="Theme.Material3Expressive.Dark.Dialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -97,8 +97,13 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="AppBottomSheetDialogLightBase" parent="Theme.Material3.Light.BottomSheetDialog">
+    <style name="AppBottomSheetDialogLightBase" parent="Theme.Material3Expressive.Light.Dialog">
         <item name="android:windowIsFloating">false</item>
+        <!-- Material 3 Expressive has no bottom-sheet theme of its own: the library's own sheet
+             theme is a dialog theme plus these, so we spell them out against the expressive base. -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Material3.BottomSheetDialog</item>
         <item name="paddingRightSystemWindowInsets">false</item>
         <item name="paddingBottomSystemWindowInsets">false</item>
         <item name="paddingLeftSystemWindowInsets">false</item>
@@ -137,8 +142,13 @@
         <item name="colorSurfaceContainerHigh">@color/md3_light_surfaceContainerHigh</item>
     </style>
 
-    <style name="AppBottomSheetDialogDarkBase" parent="Theme.Material3.Dark.BottomSheetDialog">
+    <style name="AppBottomSheetDialogDarkBase" parent="Theme.Material3Expressive.Dark.Dialog">
         <item name="android:windowIsFloating">false</item>
+        <!-- Material 3 Expressive has no bottom-sheet theme of its own: the library's own sheet
+             theme is a dialog theme plus these, so we spell them out against the expressive base. -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Material3.BottomSheetDialog</item>
         <item name="paddingRightSystemWindowInsets">false</item>
         <item name="paddingBottomSystemWindowInsets">false</item>
         <item name="paddingLeftSystemWindowInsets">false</item>
@@ -189,7 +199,7 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="AppThemeLightBase" parent="Theme.Material3.Light.NoActionBar">
+    <style name="AppThemeLightBase" parent="Theme.Material3Expressive.Light.NoActionBar">
         <!-- Neutral system typography keeps every screen legible. -->
         <item name="android:fontFamily">sans-serif</item>
         <item name="fontFamily">sans-serif</item>
@@ -297,7 +307,7 @@
         <item name="cornerSize">16dp</item>
     </style>
 
-    <style name="AppThemeDarkBase" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="AppThemeDarkBase" parent="Theme.Material3Expressive.Dark.NoActionBar">
         <!-- Neutral system typography keeps every screen legible. -->
         <item name="android:fontFamily">sans-serif</item>
         <item name="fontFamily">sans-serif</item>

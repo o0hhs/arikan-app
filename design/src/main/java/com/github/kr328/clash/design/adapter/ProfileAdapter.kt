@@ -1170,7 +1170,7 @@ class ProfileAdapter(
                     val tint = MaterialColors.getColor(
                         button,
                         if (active) {
-                            com.google.android.material.R.attr.colorPrimary
+                            androidx.appcompat.R.attr.colorPrimary
                         } else {
                             com.google.android.material.R.attr.colorOnSurfaceVariant
                         },
@@ -1629,7 +1629,7 @@ class ProfileAdapter(
             else R.string.proxy_sheet_status_disconnected
         )
         val tint = if (connected) {
-            MaterialColors.getColor(sheet.root, com.google.android.material.R.attr.colorPrimary)
+            MaterialColors.getColor(sheet.root, androidx.appcompat.R.attr.colorPrimary)
         } else {
             MaterialColors.getColor(sheet.root, com.google.android.material.R.attr.colorOnSurfaceVariant)
         }
@@ -1945,7 +1945,7 @@ class ProfileAdapter(
         binding.subscriptionExpiry.setTextColor(MaterialColors.getColor(
             binding.root,
             if (profile.expire > 0L && profile.expire <= System.currentTimeMillis()) {
-                com.google.android.material.R.attr.colorError
+                androidx.appcompat.R.attr.colorError
             } else {
                 com.google.android.material.R.attr.colorOnSurfaceVariant
             },
@@ -1970,7 +1970,7 @@ class ProfileAdapter(
         )
         binding.subscriptionUpdateStatus.setTextColor(MaterialColors.getColor(
             binding.root,
-            if (failed) com.google.android.material.R.attr.colorError
+            if (failed) androidx.appcompat.R.attr.colorError
             else com.google.android.material.R.attr.colorOnSurfaceVariant,
         ))
         binding.subscriptionRetry.visibility = if (failed && !updating) View.VISIBLE else View.GONE
