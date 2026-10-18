@@ -54,6 +54,14 @@ client solves the first ones itself; the last resort is a page it serves on
 reads the answer from. The WL screen shows that page in a WebView when a node is in the
 `captcha` state, and the client carries on by itself once it is answered.
 
+## Knowing without looking
+
+A WL client that is waiting for a captcha, or one that cannot get in at all, used to be
+invisible: the subscription was connected, the app looked fine, and nothing loaded. The service
+watches `turn-status.json` and posts a notification for exactly those two states — tapping the
+captcha one opens the client's own page, the others open this screen — and for a client that has
+been trying for half a minute without a single stream. While the clients work, it stays quiet.
+
 ## Reading the log
 
 Every client numbers its streams in its own range of 100 (`StreamIDBase`), so a line's

@@ -73,4 +73,16 @@
     <string name="yaml_edit_proxy_not_found">Proxy was not found.</string>
     <string name="yaml_edit_no_chains">No saved proxy chains.</string>
     <string name="subscription_chain_unavailable">The saved proxy chain is unavailable. Check or reselect its entry and exit servers before connecting.</string>
+    <!-- WL: what the TURN clients of the active profile are doing (see docs/turn.md). These are
+         the words of a notification the user may never see — only a client that needs a human
+         or cannot get in at all produces one. -->
+    <string name="turn_status_channel">WL connections</string>
+    <string name="turn_status_channel_description">WL connections that need an answer or cannot connect.</string>
+    <string name="turn_note_captcha_title">WL: captcha needed</string>
+    <string name="turn_note_captcha_text">%1$s is waiting for a captcha from VK. Tap to answer it.</string>
+    <string name="turn_note_failed_title">WL cannot connect</string>
+    <string name="turn_note_failed_text">%1$s: %2$s</string>
+    <string name="turn_note_trying_title">WL is still connecting</string>
+    <string name="turn_note_trying_text">%1$d connection(s) have been trying for half a minute without a stream. Tap to see the log.</string>
+
 </resources>

@@ -38,6 +38,7 @@ class ClashService : BaseService() {
         install(TimeZoneModule(self))
         install(SuspendModule(self))
         install(SpeedWidgetModule(self))
+        install(TurnNotificationModule(self))
 
         try {
             while (isActive) {

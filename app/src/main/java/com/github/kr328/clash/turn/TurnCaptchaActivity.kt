@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import com.github.kr328.clash.common.constants.Intents
 import java.net.URI
 
 /**
@@ -75,6 +76,7 @@ class TurnCaptchaActivity : AppCompatActivity() {
     }.getOrDefault(false)
 
     companion object {
-        const val EXTRA_URL = "turn_captcha_url"
+        /** The page to show; posted by the service's WL notification too ([Intents]). */
+        const val EXTRA_URL = Intents.EXTRA_TURN_CAPTCHA_URL
     }
 }
