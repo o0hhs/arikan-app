@@ -46,6 +46,7 @@ class TunService : VpnService(), CoroutineScope by CoroutineScope(Dispatchers.De
         install(TimeZoneModule(self))
         install(SuspendModule(self))
         install(SpeedWidgetModule(self))
+        install(TurnNotificationModule(self))
 
         try {
             tun.open()

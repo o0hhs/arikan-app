@@ -149,6 +149,6 @@ replace github.com/metacubex/mihomo => ./clash
 // The same replace as the cfa module (core/src/main/golang/go.mod), and it has to be repeated
 // here: a replace directive of a dependency is not inherited, and this is the module the Go
 // build step actually compiles. See cfa/native/turn there.
-replace github.com/cacggghp/vk-turn-proxy => github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.2
+replace github.com/cacggghp/vk-turn-proxy => github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.4
 
 replace google.golang.org/protobuf => github.com/metacubex/protobuf-go v0.0.0-20260306035419-7ceee0674686

@@ -27,6 +27,7 @@ object Bridge {
     external fun nativeStopHttp()
     external fun nativeTurnStart(paramsJson: String): String
     external fun nativeTurnStop(): String
+    external fun nativeTurnCaptcha(): String
     external fun nativeTurnStatus(): String
     external fun nativeQueryGroupNames(excludeNotSelectable: Boolean): String
     external fun nativeQueryAllGroupNamesIncludingHidden(): String

@@ -3,7 +3,7 @@ module cfa
 go 1.25.5
 
 require (
-	github.com/cacggghp/vk-turn-proxy v1.8.3-arikan.2
+	github.com/cacggghp/vk-turn-proxy v1.8.3-arikan.4
 	github.com/dlclark/regexp2 v1.12.0
 	github.com/dop251/goja v0.0.0-20260806115107-493f22071ef6
 	github.com/metacubex/mihomo v1.19.32
@@ -17,7 +17,7 @@ replace github.com/metacubex/mihomo => ../../foss/golang/clash
 // this process (see native/turn). Served from our fork of upstream v1.8.3: it makes the
 // client's package importable and lets the host claim its sockets and its captcha page
 // instead of shelling out to a browser. See the fork's EMBEDDING.md.
-replace github.com/cacggghp/vk-turn-proxy => github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.2
+replace github.com/cacggghp/vk-turn-proxy => github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.4
 
 require (
 	github.com/RyuaNerin/go-krypto v1.3.0 // indirect

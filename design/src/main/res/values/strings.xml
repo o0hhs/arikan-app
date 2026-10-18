@@ -1437,5 +1437,7 @@ Password: %4$s</string>
     <string name="turn_state_failed">error</string>
     <string name="turn_state_stopped">stopped</string>
     <string name="turn_state_unused">not used</string>
+    <string name="turn_captcha_request">Answer the captcha</string>
+    <string name="turn_captcha_requested">Asked VK for a captcha — the page will open by itself.</string>
 </resources>
 

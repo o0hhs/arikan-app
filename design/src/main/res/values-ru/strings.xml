@@ -1428,5 +1428,7 @@
     <string name="turn_state_failed">ошибка</string>
     <string name="turn_state_stopped">остановлен</string>
     <string name="turn_state_unused">не используется</string>
+    <string name="turn_captcha_request">Пройти капчу</string>
+    <string name="turn_captcha_requested">Запросили капчу у VK — страница откроется сама.</string>
 </resources>
 

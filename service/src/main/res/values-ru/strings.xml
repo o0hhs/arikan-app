@@ -66,4 +66,14 @@
     <string name="update_successfully">Обновление завершено</string>
     <string name="widget_permission_required">Нажмите на виджет, чтобы разрешить VPN-подключение.</string>
     <string name="subscription_chain_unavailable">Сохранённая цепочка недоступна. Проверьте или заново выберите входной и выходной серверы перед подключением.</string>
+    <!-- WL: клиенты TURN активного профиля (см. docs/turn.md). -->
+    <string name="turn_status_channel">Подключения WL</string>
+    <string name="turn_status_channel_description">WL-подключения, которым нужен ответ или которые не могут подключиться.</string>
+    <string name="turn_note_captcha_title">WL: нужна капча</string>
+    <string name="turn_note_captcha_text">%1$s ждёт капчу от VK. Нажмите, чтобы ответить.</string>
+    <string name="turn_note_failed_title">WL не подключается</string>
+    <string name="turn_note_failed_text">%1$s: %2$s</string>
+    <string name="turn_note_trying_title">WL всё ещё подключается</string>
+    <string name="turn_note_trying_text">%1$d подключение(й) пытаются полминуты и без потока. Нажмите, чтобы посмотреть лог.</string>
+
 </resources>

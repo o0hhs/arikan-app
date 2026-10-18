@@ -27,6 +27,12 @@ class TurnDesign(context: Context) : Design<TurnDesign.Request>(context) {
 
         /** Open the client's own captcha page, which it serves on loopback. */
         OpenCaptcha,
+
+        /**
+         * Ask VK for a fresh captcha, through the service: the clients hold a lockout after
+         * their automatic attempts fail, and nothing else gets past it.
+         */
+        RequestCaptcha,
     }
 
     /**
@@ -59,6 +65,8 @@ class TurnDesign(context: Context) : Design<TurnDesign.Request>(context) {
         binding.nodes.removeAllViews()
 
         val nodes = status?.nodes.orEmpty()
+
+        binding.requestCaptcha.isVisible = nodes.isNotEmpty() && captchaUrl == null
 
         binding.summary.text = when {
             status == null -> context.getString(R.string.turn_empty)
