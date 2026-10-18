@@ -354,6 +354,8 @@ github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.2 h1:IdV2Fzbv0UcN/TDNaSbt/MyADh54bE
 github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.2/go.mod h1:kkuVirUkLuaKf/i2KPuyIRzUfsuwI6nINOyD0PVzsq4=
 github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.3 h1:HkSmkUib0bSGguCatUrCM1dCOdN6PG5bnlx0eRBzfSo=
 github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.3/go.mod h1:kkuVirUkLuaKf/i2KPuyIRzUfsuwI6nINOyD0PVzsq4=
+github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.4 h1:hQO22TAqYTHREMsPBkCr8IXVyQb0EyVYFgFxRX5lSwA=
+github.com/o0hhs/vk-turn-proxy v1.8.3-arikan.4/go.mod h1:kkuVirUkLuaKf/i2KPuyIRzUfsuwI6nINOyD0PVzsq4=
 github.com/oasisprotocol/deoxysii v0.0.0-20220228165953-2091330c22b7 h1:1102pQc2SEPp5+xrS26wEaeb26sZy6k9/ZXlZN+eXE4=
 github.com/oasisprotocol/deoxysii v0.0.0-20220228165953-2091330c22b7/go.mod h1:UqoUn6cHESlliMhOnKLWr+CBH+e3bazUPvFj1XZwAjs=
 github.com/openacid/errors v0.8.1/go.mod h1:GUQEJJOJE3W9skHm8E8Y4phdl2LLEN8iD7c5gcGgdx0=

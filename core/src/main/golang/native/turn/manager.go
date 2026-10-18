@@ -129,6 +129,13 @@ var setup = sync.OnceFunc(func() {
 	vkclient.SetCaptchaResolvedHook(func(streamID int) {
 		manager.captchaSolved(streamID)
 	})
+
+	// The page a client serves for a human lives only as long as it waits for one. A host that
+	// keeps the link afterwards opens a dead page — a white screen on a phone — so the client
+	// says when the wait is over, answered or not.
+	vkclient.SetCaptchaAbandonedHook(func(streamID int) {
+		manager.captchaAbandoned(streamID)
+	})
 })
 
 // Start (re)starts the clients of a freshly loaded profile: the nodes its WL entries point at,
@@ -351,6 +358,41 @@ func (m *Manager) captchaOpened(streamID int, url string) {
 	Report("Node %q: VK asks for a captcha, answer it at %s", run.node.Name, url)
 
 	m.writeStatus()
+}
+
+// captchaAbandoned drops a captcha link whose wait has ended without an answer. The node is not
+// broken: its clients retry, and asking again is what the user's button is for.
+func (m *Manager) captchaAbandoned(streamID int) {
+	run := m.runnerFor(streamID)
+	if run == nil {
+		return
+	}
+
+	run.mu.Lock()
+	wasWaiting := run.state == StateCaptcha
+	run.captcha = ""
+	if wasWaiting {
+		run.state = StateStarting
+	}
+	run.mu.Unlock()
+
+	if wasWaiting {
+		Report("Node %q: nobody answered the captcha in time", run.node.Name)
+	}
+
+	m.writeStatus()
+}
+
+// RequestCaptcha asks the clients to fetch a fresh challenge for the user to answer. The app's
+// "answer the captcha" button calls it through the bridge: a person who has agreed to solve one
+// is information the automatic attempts cannot have, and it is what gets past the lockout the
+// client puts up after they fail.
+func (m *Manager) RequestCaptcha() {
+	setup()
+
+	Report("Captcha requested by the user")
+
+	vkclient.RequestManualCaptcha()
 }
 
 func (m *Manager) captchaSolved(streamID int) {

@@ -564,6 +564,16 @@ object Clash {
     fun turnStop(): String? =
         Bridge.nativeTurnStop().takeIf { it.isNotBlank() }
 
+    /**
+     * Ask the WL clients for a fresh VK captcha, because a person is ready to answer one.
+     *
+     * The client puts a lockout up after its automatic attempts fail, and that lockout is what
+     * makes the captcha page never come back on its own; this is the "I am here, ask again" that
+     * gets past it. The page then appears in [TurnStatus.Node.captchaUrl] like any other.
+     */
+    fun requestTurnCaptcha(): String? =
+        Bridge.nativeTurnCaptcha().takeIf { it.isNotBlank() }
+
     /** What every node's TURN client is doing: state, counters and the log tail, as JSON. */
     fun queryTurnStatus(): TurnStatus =
         Json.Default.decodeFromString(TurnStatus.serializer(), Bridge.nativeTurnStatus())

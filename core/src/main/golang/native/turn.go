@@ -35,6 +35,18 @@ func turnStop() *C.char {
 	return marshalString("")
 }
 
+// export turnCaptcha asks the clients to fetch a fresh captcha challenge for the user to answer.
+// Returns an empty string: there is nothing to report, and the client's own state says the rest.
+//
+//export turnCaptcha
+func turnCaptcha() *C.char {
+	defer guard("turnCaptcha")()
+
+	turn.ManagerFor().RequestCaptcha()
+
+	return marshalString("")
+}
+
 //export turnStatus
 func turnStatus() *C.char {
 	defer guard("turnStatus")()

@@ -40,6 +40,9 @@ object Intents {
     /** The captcha page a WL client is waiting for, passed to TurnCaptchaActivity. */
     const val EXTRA_TURN_CAPTCHA_URL = "turn_captcha_url"
 
+    /** The user asked for a fresh captcha to answer (the service holds the client). */
+    val ACTION_TURN_REQUEST_CAPTCHA = "$packageName.intent.action.TURN_REQUEST_CAPTCHA"
+
     const val EXTRA_UUID = "uuid"
     const val EXTRA_FAIL_REASON = "fail_reason"
 }

@@ -1,11 +1,16 @@
 package com.github.kr328.clash.turn
 
+import android.content.Intent
 import com.github.kr328.clash.BaseActivity
 import com.github.kr328.clash.common.util.intent
 import com.github.kr328.clash.common.util.ticker
+import com.github.kr328.clash.common.constants.Intents
 import com.github.kr328.clash.core.model.TurnStatus
 import com.github.kr328.clash.design.TurnDesign
+import com.github.kr328.clash.design.R
+import com.github.kr328.clash.design.ui.ToastDuration
 import com.github.kr328.clash.service.util.importedDir
+import com.github.kr328.clash.service.util.sendBroadcastSelf
 import com.github.kr328.clash.util.withProfile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.isActive
@@ -36,6 +41,10 @@ class TurnActivity : BaseActivity<TurnDesign>() {
         // away the reader's scroll position.
         var lastModified = -1L
 
+        // Set when the user asked for a fresh captcha: the page appears a few seconds later, and
+        // the next poll opens it. One tap instead of "press here, then wait, then press again".
+        var awaitingCaptcha = false
+
         suspend fun refresh() {
             val snapshot = withContext(Dispatchers.IO) {
                 val dir = activeProfileDir()
@@ -52,7 +61,22 @@ class TurnActivity : BaseActivity<TurnDesign>() {
 
             lastModified = snapshot.first
 
-            design.patch(snapshot.second)
+            val status = snapshot.second
+
+            design.patch(status)
+
+            if (awaitingCaptcha) {
+                val url = status?.nodes?.firstOrNull { !it.captchaUrl.isNullOrBlank() }?.captchaUrl
+
+                if (url != null) {
+                    awaitingCaptcha = false
+
+                    startActivity(
+                        TurnCaptchaActivity::class.intent
+                            .putExtra(TurnCaptchaActivity.EXTRA_URL, url)
+                    )
+                }
+            }
         }
 
         refresh()
@@ -84,6 +108,13 @@ class TurnActivity : BaseActivity<TurnDesign>() {
                                 TurnCaptchaActivity::class.intent
                                     .putExtra(TurnCaptchaActivity.EXTRA_URL, url)
                             )
+                        }
+                        TurnDesign.Request.RequestCaptcha -> {
+                            sendBroadcastSelf(Intent(Intents.ACTION_TURN_REQUEST_CAPTCHA))
+
+                            awaitingCaptcha = true
+
+                            design.showToast(R.string.turn_captcha_requested, ToastDuration.Short)
                         }
                     }
                 }

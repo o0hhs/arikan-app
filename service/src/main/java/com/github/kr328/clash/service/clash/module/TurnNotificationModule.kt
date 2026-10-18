@@ -9,6 +9,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.github.kr328.clash.common.compat.getColorCompat
 import com.github.kr328.clash.common.compat.pendingIntentFlags
 import com.github.kr328.clash.common.constants.Intents
+import com.github.kr328.clash.core.Clash
 import com.github.kr328.clash.core.model.TurnStatus
 import com.github.kr328.clash.service.R
 import com.github.kr328.clash.service.data.ImportedDao
@@ -42,6 +43,7 @@ class TurnNotificationModule(service: Service) : Module<Unit>(service) {
             addAction(Intents.ACTION_PROFILE_LOADED)
             addAction(Intents.ACTION_PROFILE_CHANGED)
             addAction(Intents.ACTION_CLASH_STARTED)
+            addAction(Intents.ACTION_TURN_REQUEST_CAPTCHA)
         }
 
         val manager = NotificationManagerCompat.from(service)
@@ -56,7 +58,14 @@ class TurnNotificationModule(service: Service) : Module<Unit>(service) {
         try {
             while (true) {
                 select<Unit> {
-                    stateChanged.onReceive { }
+                    stateChanged.onReceive { intent ->
+                        // The screen asks for a fresh challenge when the user presses "answer the
+                        // captcha": the clients hold the lockout, and this is the only way past it
+                        // from another process.
+                        if (intent.action == Intents.ACTION_TURN_REQUEST_CAPTCHA) {
+                            Clash.requestTurnCaptcha()
+                        }
+                    }
                     onTimeout(PollIntervalMillis) { }
                 }
 

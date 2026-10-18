@@ -1339,4 +1339,6 @@
     <string name="chain_removed">代理链已删除。订阅恢复普通路由。</string>
     <string name="proxy_layout_show_dropdown">以下拉列表显示分组</string>
     <string name="proxy_layout_show_tabs">以标签页显示分组</string>
+    <string name="turn_captcha_request">完成验证码</string>
+    <string name="turn_captcha_requested">已向 VK 请求验证码，页面会自动打开。</string>
 </resources>
