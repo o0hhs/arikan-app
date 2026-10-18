@@ -202,8 +202,8 @@ class TurnNotificationModule(service: Service) : Module<Unit>(service) {
         fun createNotificationChannel(service: Service) {
             NotificationManagerCompat.from(service).createNotificationChannel(
                 NotificationChannelCompat.Builder(CHANNEL_ID, NotificationManagerCompat.IMPORTANCE_DEFAULT)
-                    .setName(service.getText(R.string.turn_status_channel))
-                    .setDescription(service.getText(R.string.turn_status_channel_description))
+                    .setName(service.getString(R.string.turn_status_channel))
+                    .setDescription(service.getString(R.string.turn_status_channel_description))
                     .build()
             )
         }
